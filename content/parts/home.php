@@ -41,7 +41,10 @@
                         </a>
                     </div>
                 </nav>
-                <div class="card-body h-100">
+                <div class="card-body h-100" style="min-height: 300px;">
+                    <h5 class="card-title">Title</h5>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum soluta corrupti praesentium distinctio quod cupiditate eaque. Ullam rerum cum tempora quae id qui dicta quia. Exercitationem voluptates vel eaque consequatur.</p>
+                    <a style="color:inherit; text-decoration:none;" class="pointer text-muted"> Read more </a>
                 </div>
             </div>
         </div>
