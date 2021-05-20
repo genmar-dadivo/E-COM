@@ -4,7 +4,7 @@
     </div>
     <div class="row">
         <div class="container">
-            <div class="mt-3">
+            <div class="mt-5">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control border-0 shadow-sm" id="emailaddress" placeholder="name@example.com" autocomplete="off">
                     <label for="emailaddress">Email address</label>
@@ -27,6 +27,9 @@
                     <textarea class="form-control border-0 shadow-sm" placeholder="Go ahead, we're listening" id="detailsfield" style="min-height: 200px; resize: none;"></textarea>
                     <label for="detailsfield">Details</label>
                 </div>
+            </div>
+            <div class="mt-3">
+                <button type="button" class="btn custom-btn-1 btn-lg"> Submit </button>
             </div>
         </div>
     </div>

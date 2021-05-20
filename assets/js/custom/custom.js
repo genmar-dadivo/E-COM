@@ -1,5 +1,6 @@
 // ON LOAD
 $(document).ready(function () {
+  OverlayScrollbars(document.querySelectorAll('body'), { });
   var loadpageid = Cookies.get('pageid');
   $('#bodyid').val(loadpageid);
   if(!loadpageid) { $("#page-content").load("content/parts/home.php"); }

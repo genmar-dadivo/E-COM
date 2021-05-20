@@ -54,4 +54,5 @@
 			</div>
 		</div>
 	</div>
+	<div style="min-height: 100px;"></div>
 </div>

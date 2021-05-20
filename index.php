@@ -11,7 +11,7 @@
       	<link href="assets/css/custom/custom.css" rel="stylesheet">
       	<title> E-COM </title>
    	</head>
-   	<body class="noselect" style="background-color: #fff;">
+   	<body class="noselect" style="background-color: rgb(240, 240, 240);">
     	<nav class="navbar navbar-expand-lg navbar-light text-light">
         	<div class="container">
             	<a class="navbar-brand">
