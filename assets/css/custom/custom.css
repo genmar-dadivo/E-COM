@@ -49,15 +49,8 @@
 	-ms-user-select: none;
 	user-select: none;
 }
-
-.color-wrap { position:relative; }
-.color-wrap:before {
-	content:"";
-	position: absolute;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
-	background: rgba(0,0,0,0.5);
-	z-index:999;
+/* FC CSS */
+.fc-col-header-cell-cushion, .fc-daygrid-day-number, .fc-daygrid-more-link {
+	text-decoration: none;
+	color: inherit;
 }
