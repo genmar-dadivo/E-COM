@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    date_default_timezone_set("Asia/Manila");
+    $datetimenow = date('YmdHis');
+?>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -14,14 +19,14 @@
 		<title> E-COM </title>
 	</head>
 	<body class="noselect" style="background-color: rgb(240, 240, 240);">
-	  	<nav class="navbar navbar-expand-lg navbar-light text-light">
+		<nav class="navbar navbar-expand-lg navbar-light text-light">
 			<div class="container">
-			  <a class="navbar-brand">
-				<img src="../../assets/img/logo.png" alt="" width="50" height="50">
-				  E-COM
+				<a class="navbar-brand">
+					<img src="../../assets/img/logo.png" alt="" width="50" height="50">
+					E-COM
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarNav">
 					<div class="navbar-nav me-auto">
@@ -39,9 +44,47 @@
 						<li class="nav-item me-4">
 							<a class="nav-link pointer" onclick="eloadcontent(4)">Surveys</a>
 						</li>
-						<li class="nav-item me-1">
+						<li class="nav-item me-4">
 							<a class="nav-link pointer" onclick="eloadcontent(5)">Contact Us</a>
 						</li>
+						<?php
+							if (isset($_SESSION['ecom_auth']) ) {
+							require '../../content/dbase/dbconfig.php';
+							$email = $_SESSION['ecom_auth'];
+							$sql = "SELECT lvl FROM tuser WHERE email = '$email'";
+							$stm = $con->prepare($sql);
+							$stm->execute();
+							$row = $stm->fetch();
+							$lvl = $row['lvl'];
+						?>
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Account
+							</a>
+							<ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item" href="#" onclick="eloadcontent(6)">Profile</a>
+								</li>
+								<?php if ($lvl == 0) { ?>
+								<li>
+									<a class="dropdown-item" href="#" onclick="eloadcontent(7)">Admin</a>
+								</li>
+								<?php } ?>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li>
+									<a class="dropdown-item" href="#" onclick="logout()">Logout</a>
+								</li>
+							</ul>
+						</li>
+						<?php }
+							else {
+						?>
+						<li class="nav-item me-1 login">
+							<a class="nav-link pointer" onclick="login()">Login</a>
+						</li>
+						<?php } ?>
 					</ul>
 				</div>
 			</div>
@@ -56,7 +99,7 @@
 				</div>
 			</div>
 		</main>
-		<div id="ids" class="hidden">
+		<div id="ids" class="">
 			<input id="bodyid">
 		</div>
 		<!-- Bootstrap JS -->

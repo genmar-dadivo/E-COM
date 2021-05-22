@@ -7,6 +7,7 @@
 			<div class="card border-0 shadow-sm">
 				<img src="https://picsum.photos/1000/500" class="card-img-top" alt="https://picsum.photos/1000/500">
 				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				</div>
 			</div>
@@ -15,6 +16,7 @@
 			<div class="card border-0 shadow-sm">
 				<img src="https://picsum.photos/1000/500" class="card-img-top" alt="https://picsum.photos/1000/500">
 				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				</div>
 			</div>
@@ -23,6 +25,7 @@
 			<div class="card border-0 shadow-sm">
 				<img src="https://picsum.photos/1000/500" class="card-img-top" alt="https://picsum.photos/1000/500">
 				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				</div>
 			</div>
@@ -33,6 +36,7 @@
 			<div class="card border-0 shadow-sm">
 				<img src="https://picsum.photos/1000/500" class="card-img-top" alt="https://picsum.photos/1000/500">
 				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				</div>
 			</div>
@@ -41,6 +45,7 @@
 			<div class="card border-0 shadow-sm">
 				<img src="https://picsum.photos/1000/500" class="card-img-top" alt="https://picsum.photos/1000/500">
 				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				</div>
 			</div>
@@ -49,6 +54,7 @@
 			<div class="card border-0 shadow-sm">
 				<img src="https://picsum.photos/1000/500" class="card-img-top" alt="https://picsum.photos/1000/500">
 				<div class="card-body">
+					<h5 class="card-title">Card title</h5>
 					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 				</div>
 			</div>

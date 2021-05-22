@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    date_default_timezone_set("Asia/Manila");
+    $datetimenow = date('YmdHis');
+?>
 <!doctype html>
 <html lang="en">
    <head>
@@ -37,9 +42,47 @@
 						<li class="nav-item me-4">
 							<a class="nav-link pointer" onclick="loadcontent(4)">Surveys</a>
 						</li>
-						<li class="nav-item me-1">
+						<li class="nav-item me-4">
 							<a class="nav-link pointer" onclick="loadcontent(5)">Contact Us</a>
 						</li>
+						<?php
+							if (isset($_SESSION['ecom_auth']) ) {
+							require 'content/dbase/dbconfig.php';
+							$email = $_SESSION['ecom_auth'];
+							$sql = "SELECT lvl FROM tuser WHERE email = '$email'";
+							$stm = $con->prepare($sql);
+							$stm->execute();
+							$row = $stm->fetch();
+							$lvl = $row['lvl'];
+						?>
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Account
+							</a>
+							<ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item" href="#" onclick="loadcontent(6)">Profile</a>
+								</li>
+								<?php if ($lvl == 0) { ?>
+								<li>
+									<a class="dropdown-item" href="#" onclick="loadcontent(7)">Admin</a>
+								</li>
+								<?php } ?>
+								<li>
+									<hr class="dropdown-divider">
+								</li>
+								<li>
+									<a class="dropdown-item" href="#" onclick="logout()">Logout</a>
+								</li>
+							</ul>
+						</li>
+						<?php }
+							else {
+						?>
+						<li class="nav-item me-1 login">
+							<a class="nav-link pointer" onclick="login()">Login</a>
+						</li>
+						<?php } ?>
 					</ul>
 				</div>
          	</div>
@@ -49,6 +92,33 @@
 		</main>
 		<div id="ids" class="hidden">
 			<input id="bodyid">
+		</div>
+		<!-- <div class="modal fade" id="login" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"> -->
+		<div class="modal fade" id="login" tabindex="-1">
+			<div class="modal-dialog">
+			  	<div class="modal-content">
+					<div class="login-page">
+						<img src="assets/img/logo.png" class="rounded mx-auto d-block" style="height: 100px;">
+						<div class="form">
+							<form class="register-form intlogin" id="formRegister">
+								<input type="text" name="fname" placeholder="Full Name" autocomplete="off" required>
+								<input type="password" name="pword" placeholder="Password" maxlength="16" autocomplete="off" required>
+								<input type="email" name="email" autocomplete="off" placeholder="Email Address" required>
+								<textarea name="address" autocomplete="off" placeholder="Address" required></textarea>
+								<input type="text" name="code" autocomplete="off" placeholder="Code" maxlength="8" minlength="8" required>
+								<button type="submit" id="btnCreate"> Create </button>
+								<p class="message">Already registered? <a href="#">Sign In</a></p>
+							</form>
+							<form class="login-form intlogin" id="formLogin">
+								<input type="text" name="email" autocomplete="off" placeholder="Email Address" required>
+								<input type="password" name="pword" placeholder="Password" autocomplete="off" required>
+								<button id="btnLogin"> Login </button>
+								<p class="message">Not registered? <a href="#">Create an account</a></p>
+							</form>
+						</div>
+					</div>
+			  	</div>
+			</div>
 		</div>
       	<!-- Bootstrap JS -->
       	<script src="assets/js/bs/bootstrap.min.js"></script>
@@ -67,6 +137,8 @@
       	<script src="assets/js/ib/bindings/inputmask.binding.js"></script>
       	<!-- Cookie JS -->
       	<script src="assets/js/cookie/js.cookie.min.js"></script>
+		<!-- Cookie JS -->
+      	<script src="assets/js/notify/bootstrap-notify.min.js"></script>
       	<!-- Custom JS -->
       	<script src="assets/js/custom/custom.js"></script>
    	</body>

@@ -1,7 +1,11 @@
 <?php
-    $emailaddress = $_POST['emailaddress'];
-    $concerncategory = ucwords($_POST['concerncategory']);
-    $detailsfield = $_POST['detailsfield'];
+    $emailaddress = strtolower($_POST['emailaddress']);
+    $mail_subject = ucwords($_POST['concerncategory']);
+    if ($mail_subject == 1) { $mail_subject = "Report"; }
+    elseif ($mail_subject == 2) { $mail_subject = "Emergency"; }
+    elseif ($mail_subject == 3) { $mail_subject = "Feedback"; }
+    elseif ($mail_subject == 4) { $mail_subject = "Others"; }
+    $mail_content = $_POST['detailsfield'];
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
     use PHPMailer\PHPMailer\Exception;
@@ -9,10 +13,10 @@
     $mail = new PHPMailer(true);
     try {
         $mail->isSMTP();
-        $mail->Host       = 'mail.example.com';
+        $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
-        $mail->Username   = '';
-        $mail->Password   = '';
+        $mail->Username   = 'kalsaybglm@gmail.com';
+        $mail->Password   = 'ecombestresearch';
         $mail->SMTPSecure = 'ssl'; 
         $mail->Port       = 465;
         $mail->SMTPOptions = array(
@@ -23,7 +27,7 @@
             )
         );
         $mail->setFrom('info@example.com', 'E-COM Mailer');
-        $mail->addAddress('info@example.com');
+        $mail->addAddress($emailaddress);
         $mail->isHTML(true);
         $mail->Subject = $mail_subject;
         $mail->Body    = $mail_content;

@@ -45,13 +45,7 @@
             url: 'content/action/formcontact.php',
             data: $('#formContact').serialize(),
             success: function(data) {
-                Push.create("E-COM", {
-                    body: data,
-                    onClick: function() {
-                        window.focus();
-                        this.close();
-                    },
-                });
+                alert(data);
             }
         });
     });
