@@ -12,10 +12,13 @@
       	<link href="../../assets/css/bs/bootstrap.min.css" rel="stylesheet">
       	<!-- OS CSS -->
       	<link href="../../assets/css/os/css/OverlayScrollbars.min.css" rel="stylesheet">
-        <!-- FA CSS -->
-        <link href="../../assets/css/fa/css/fontawesome.min.css" rel="stylesheet">
-        <link href="../../assets/css/fa/css/brands.min.css" rel="stylesheet">
-        <link href="../../assets/css/fa/css/solid.min.css" rel="stylesheet">
+         <!-- FA CSS -->
+         <link href="../../assets/css/fa/css/fontawesome.min.css" rel="stylesheet">
+         <link href="../../assets/css/fa/css/brands.min.css" rel="stylesheet">
+         <link href="../../assets/css/fa/css/solid.min.css" rel="stylesheet">
+         <!-- Datatable CSS -->
+         <link rel="stylesheet" href="../../assets/js/dt/css/dataTables.bootstrap4.min.css">
+         <link rel="stylesheet" href="../../assets/js/dt/css/responsive.dataTables.min.css">
       	<!-- Custom CSS -->
       	<link href="../../assets/css/custom/custom.css" rel="stylesheet">
       	<title> E-COM </title>
@@ -26,6 +29,7 @@
             <i class="fas fa-bars"></i>
          </a>
          <main class="page-content navbar-light">
+            <div id="page-content"></div>
          </main>
 			<nav id="sidebar" class="sidebar-wrapper">
          </nav>
@@ -50,6 +54,17 @@
       <script src="../../assets/js/cookie/js.cookie.min.js"></script>
       <!-- Cookie JS -->
       <script src="../../assets/js/notify/bootstrap-notify.min.js"></script>
+      <!-- Datatable JS -->
+		<script src="../../assets/js/dt/js/jquery.dataTables.min.js"></script>
+		<script src="../../assets/js/dt/js/dataTables.bootstrap4.min.js"></script>
+		<script src="../../assets/js/dt/js/dataTables.responsive.min.js"></script>
+		<script src="../../assets/js/dt/js/dataTables.buttons.min.js"></script>   
+		<script src="../../assets/js/dt/js/buttons.flash.min.js"></script>    
+		<script src="../../assets/js/dt/js/buttons.html5.min.js"></script>    
+		<script src="../../assets/js/dt/js/buttons.print.min.js"></script>
+		<script src="../../assets/js/dt/js/jszip.min.js"></script>    
+		<script src="../../assets/js/dt/js/pdfmake.min.js"></script>    
+		<script src="../../assets/js/dt/js/vfs_fonts.js"></script> 
       <!-- Custom JS -->
       <script src="../../assets/js/custom/custom.js"></script>
 	</body>

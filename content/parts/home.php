@@ -1,51 +1,68 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="col-lg-12">
+            <div id="carhome" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <?php
+                    require '../dbase/dbconfig.php';
+                    $sql = "SELECT * FROM adminhome WHERE type = 1 AND status = 1";
+                    $stm = $con->prepare($sql);
+                    $stm->execute();
+                    $results = $stm->fetchAll(PDO::FETCH_ASSOC);
+                    if ($stm->rowCount() >= 1) {
+                    $activecapture = 0;
+                    foreach ($results as $row) {
+                    $id = $row['id'];
+                    $type = $row['type'];
+                    $title = ucwords(strtolower($row['title']));
+                    $file = $row['file'];
+                    $date = date('Y-m-d', strtotime($row['date']));
+                    ?>
+                    <button type="button" data-bs-target="#carhome" data-bs-slide-to="<?php echo $activecapture; ?>" class="<?php if($activecapture == 0) { echo "active"; } ?>" aria-current="true"></button>
+                    <?php 
+                    $activecapture ++;
+                    }
+                    }
+                    ?>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://picsum.photos/1000/500" class="d-block w-100 img-fluid" alt="">
+                    <?php
+                    require '../dbase/dbconfig.php';
+                    $sql = "SELECT * FROM adminhome WHERE type = 1 AND status = 1";
+                    $stm = $con->prepare($sql);
+                    $stm->execute();
+                    $results = $stm->fetchAll(PDO::FETCH_ASSOC);
+                    if ($stm->rowCount() >= 1) {
+                    $activecapture = 0;
+                    foreach ($results as $row) {
+                    $id = $row['id'];
+                    $type = $row['type'];
+                    $title = ucwords(strtolower($row['title']));
+                    $assetdescription = ucwords(strtolower($row['assetdescription']));
+                    $file = $row['file'];
+                    $date = date('Y-m-d', strtotime($row['date']));
+                    ?>
+                    <div class="carousel-item <?php if($activecapture == 0) { echo "active"; } ?>">
+                        <img src="assets/img/home/<?php echo $file; ?>" class="d-block w-100 img-fluid" alt="" style="max-height: 500px;min-height: 500px;">
                         <div class="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                            <h5 class="text-dark"><?php echo $title; ?></h5>
+                            <p class="text-dark"><?php echo $assetdescription; ?></p>
                         </div>
                     </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/1000/500" class="d-block w-100 img-fluid" alt="">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://picsum.photos/1000/500" class="d-block w-100 img-fluid" alt="">
-                    </div>
+                    <?php 
+                    $activecapture ++;
+                    }
+                    }
+                    ?>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carhome" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carhome" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-            </div>
-       </div>
-       <div class="col h-100 notification-panel">
-            <div class="card border-0 shadow-sm">
-                <nav class="navbar navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="fw-normal text-muted text-decoration-none" href="#">
-                        Notification
-                        </a>
-                    </div>
-                </nav>
-                <div class="card-body h-100" style="min-height: 300px;">
-                    <h5 class="card-title">Title</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum soluta corrupti praesentium distinctio quod cupiditate eaque. Ullam rerum cum tempora quae id qui dicta quia. Exercitationem voluptates vel eaque consequatur.</p>
-                    <a style="color:inherit; text-decoration:none;" class="pointer text-muted"> Read more </a>
-                </div>
             </div>
         </div>
     </div>

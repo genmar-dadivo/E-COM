@@ -99,7 +99,7 @@
 				</div>
 			</div>
 		</main>
-		<div id="ids" class="">
+		<div id="ids" class="hidden">
 			<input id="bodyid">
 		</div>
 		<!-- Bootstrap JS -->

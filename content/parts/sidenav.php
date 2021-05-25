@@ -28,8 +28,26 @@
 			</li>
 			<li>
 				<a class="pointer" onclick="adminpage(1)">
-				<i class="fa fa-upload"></i>
-				<span>Home</span>
+					<i class="fa fa-home"></i>
+					<span>Home</span>
+				</a>
+			</li>
+			<li>
+				<a class="pointer" onclick="adminpage(2)">
+					<i class="fa fa-calendar"></i>
+					<span>Event</span>
+				</a>
+			</li>
+			<li>
+				<a class="pointer" onclick="adminpage(3)">
+					<i class="fas fa-bullhorn"></i>
+					<span>Announcement</span>
+				</a>
+			</li>
+			<li>
+				<a class="pointer" onclick="adminpage(4)">
+					<i class="fas fa-bullhorn"></i>
+					<span>Survey</span>
 				</a>
 			</li>
 		</ul>
