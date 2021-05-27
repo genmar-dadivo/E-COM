@@ -32,23 +32,35 @@
 					<div class="navbar-nav me-auto">
 					</div>
 					<ul class="navbar-nav">
-						<li class="nav-item me-4">
+						<li class="nav-item me-3">
 							<a class="nav-link pointer rounded-top custom-bg-1 text-light" onclick="eloadcontent(1)">Home</a>
 						</li>
-						<li class="nav-item me-4">
+						<li class="nav-item me-3">
 							<a class="nav-link pointer" onclick="eloadcontent(2)">Events</a>
 						</li>
-						<li class="nav-item me-4">
+						<li class="nav-item me-3">
 							<a class="nav-link pointer" onclick="eloadcontent(3)">Announcements</a>
 						</li>
-						<li class="nav-item me-4">
+						<li class="nav-item me-3">
 							<a class="nav-link pointer" onclick="eloadcontent(4)">Surveys</a>
 						</li>
-						<li class="nav-item me-4">
+						<li class="nav-item me-3">
 							<a class="nav-link pointer" onclick="eloadcontent(5)">Contact Us</a>
 						</li>
 						<?php
 							if (isset($_SESSION['ecom_auth']) ) {
+						?>
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Notification
+							</a>
+							<ul class="dropdown-menu border-0" aria-labelledby="navbarDropdown">
+								<li>
+									<a class="dropdown-item pointer"> Title </a>
+								</li>
+							</ul>
+						</li>
+						<?php
 							require '../../content/dbase/dbconfig.php';
 							$email = $_SESSION['ecom_auth'];
 							$sql = "SELECT lvl FROM tuser WHERE email = '$email'";

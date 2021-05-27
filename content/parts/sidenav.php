@@ -1,3 +1,21 @@
+<?php 
+	session_start();+
+	require '../dbase/dbconfig.php';
+	if (isset($_SESSION['ecom_auth'])) {
+		$ecom_auth = $_SESSION['ecom_auth'];
+		$sql = "SELECT * FROM tuser WHERE email = '$ecom_auth'";
+		$stm = $con->prepare($sql);
+		$stm->execute();
+		$row = $stm->fetch();
+		$lvl = $row['lvl'];
+		$fname = ucwords(strtolower($row['fname']));
+		$status = $row['status'];
+	}
+	else {
+		$fname = '';
+		$status = '';
+	}
+?>
 <div class="sidebar-content">
 	<div class="sidebar-brand">
 		<div id="close-sidebar" class="fw-lighter custom-fp-1 pointer">
@@ -12,12 +30,19 @@
 		</div>
 		<div class="user-info">
 			<span class="user-name">
-			    {fname}
+			    <?php echo $fname; ?>
 			</span>
-			<span class="user-role">{pos}</span>
 			<span class="user-status">
+				<?php
+				if($status == 1) {
+				?>
 			    <i class="fa fa-circle"></i>
-			    <span>{status}</span>
+			    <span>
+					Online
+				</span>
+				<?php
+				}
+				?>
 			</span>
 		</div>
 	</div>
@@ -83,7 +108,8 @@
 	   }
 	});
 	function logout() {
-	   Cookies.remove('appid');
+	   Cookies.remove('pageid');
+	   Cookies.remove('adminpageid');
 	   $.ajax({
 	      type: "GET",
 	      url: '../../content/action/formlogout.php',

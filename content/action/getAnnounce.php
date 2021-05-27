@@ -8,10 +8,12 @@
         foreach ($results as $row) {
             $id = $row['id'];
             $title = $row['title'];
+            $subtitle = $row['subtitle'];
             $announcedescription = $row['announcedescription'];
             $output['data'][] = array(
                 "",
                 "$title",
+                "$subtitle",
                 "$announcedescription",
                 "<i class='fa fa-trash pointer' onclick='deleteannouncement($id)'></i>",
             );
@@ -21,6 +23,7 @@
         $output['data'][] = array(
             "",
             "No Data",
+            "",
             "",
             ""
         );

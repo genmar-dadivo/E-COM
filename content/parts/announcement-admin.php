@@ -9,6 +9,7 @@
                                 <tr>
                                     <th style="width: 5px;"></th>
                                     <th style="width: 20px;">Title</th>
+                                    <th style="width: 20px;">Subtitle</th>
                                     <th style="width: 100px;">Description</th>
                                     <th style="width: 10px;">Action</th>
                                 </tr>
@@ -19,6 +20,7 @@
                                 <tr>
                                     <th style="width: 5px;"></th>
                                     <th style="width: 20px;">Title</th>
+                                    <th style="width: 20px;">Subtitle</th>
                                     <th style="width: 100px;">Description</th>
                                     <th style="width: 10px;">Action</th>
                                 </tr>
@@ -39,14 +41,22 @@
                 <form id="formAnnouncement">
                     <div class="container">
                         <div class="row mt-5">
-                            <div class="col-sm-9">
+                            <div class="col">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control border-0 shadow-sm" onblur="this.style='text-transform: capitalize;'" id="eventtitle" name="eventtitle" placeholder="Title" autocomplete="off" required>
                                     <label for="eventtitle">Title</label>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="row mt-1">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control border-0 shadow-sm" onblur="this.style='text-transform: capitalize;'" id="eventsubtitle" name="eventsubtitle" placeholder="Sub Title" autocomplete="off" required>
+                                    <label for="eventsubtitle">Sub Title</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-1">
                             <div class="col-sm-12">
                                 <div class="form-floating">
                                     <textarea class="form-control border-0 shadow-sm" placeholder="Announcement" id="announcement" name="announcement" style="min-height: 250px; resize: none;"></textarea>

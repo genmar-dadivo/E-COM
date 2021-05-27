@@ -2,6 +2,7 @@
     session_start();
     date_default_timezone_set("Asia/Manila");
     $datetimenow = date('YmdHis');
+    if (!isset($_SESSION['ecom_auth']) ) { echo "<script type='text/javascript'> window.location = '../../index.php' </script>"; }
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,6 +17,7 @@
          <link href="../../assets/css/fa/css/fontawesome.min.css" rel="stylesheet">
          <link href="../../assets/css/fa/css/brands.min.css" rel="stylesheet">
          <link href="../../assets/css/fa/css/solid.min.css" rel="stylesheet">
+         <link href="../../assets/css/fa/css/all.min.css" rel="stylesheet">
          <!-- Datatable CSS -->
          <link rel="stylesheet" href="../../assets/js/dt/css/dataTables.bootstrap4.min.css">
          <link rel="stylesheet" href="../../assets/js/dt/css/responsive.dataTables.min.css">
@@ -52,7 +54,7 @@
       <script src="../../assets/js/ib/bindings/inputmask.binding.js"></script>
       <!-- Cookie JS -->
       <script src="../../assets/js/cookie/js.cookie.min.js"></script>
-      <!-- Cookie JS -->
+      <!-- BN JS -->
       <script src="../../assets/js/notify/bootstrap-notify.min.js"></script>
       <!-- Datatable JS -->
 		<script src="../../assets/js/dt/js/jquery.dataTables.min.js"></script>

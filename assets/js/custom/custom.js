@@ -1,12 +1,22 @@
 // ON LOAD
 $(document).ready(function () {
+  $('.emailadd').on('blur', function(){
+    if($(this).val() == '') {
+      $(this).removeClass('text-lowercase');
+      $(this).addClass('text-capitalize');
+    }
+    else {
+      $(this).removeClass('text-capitalize');
+      $(this).addClass('text-lowercase');
+    }
+  });
   var loadpageid = Cookies.get('pageid');
   var loadadminpageid = Cookies.get('adminpageid');
-  $('#sidebar').load('../../content/parts/sidenav.php');
   $('#bodyid').val(loadpageid);
   if  (loadpageid == 2) { loadpageid = 1; }
   else if(!loadpageid) { loadpageid = 1; }
   if (window.location.href.indexOf("admin") != -1) {
+    $('#sidebar').load('../../content/parts/sidenav.php');
     adminpage(loadadminpageid);
     //alert(loadadminpageid);
   }
@@ -114,18 +124,29 @@ $('#formRegister').on('submit', function(e) {
       url: 'content/action/formregister.php',
       data: $('#formRegister').serialize(),
       success: function(data) {
-          Push.create("E-COM", {
-              body: data,
-              onClick: function() {
-                  window.focus();
-                  this.close();
-              },
-              onClose: function() {
-                window.location.href = '';
-                $('#btnCreate').prop("disabled", true);
-                $("#btnCreate").html('Create');
-            },
-          });
+        $.notify({
+          message: data,
+        },
+        {
+          type: "minimalist",
+          allow_dismiss: false,
+          z_index: 9999,
+          placement: {
+            from: "bottom",
+            align: "center"
+          },
+          animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+          },
+          onClosed: setTimeout(function() {
+            location.reload();
+          }, 3000),
+          template: 
+          '<div data-notify="container" class="col-xs-6 col-sm-3 alert alert-{0}" role="alert">' +
+            '<span data-notify="message">{2}</span>' +
+          '</div>'
+        });
       }
   });
 });

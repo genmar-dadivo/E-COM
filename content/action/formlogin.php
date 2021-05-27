@@ -6,6 +6,9 @@
     $stm = $con->prepare($sql);
 	$stm->execute();
     if ($stm->rowCount() == 1) {
+        $sql = "UPDATE tuser SET status = 1 WHERE email = '$email' AND pword = '$pword' ";
+        $stm = $con->prepare($sql);
+        $stm->execute();
         session_start();
         $_SESSION['ecom_auth'] = $email;
         echo "Logging In.";
