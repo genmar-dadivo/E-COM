@@ -1,3 +1,3 @@
 <?php
-	$con = new PDO("mysql:host=localhost;dbname=ecom", "root", "12302112");
+	$con = new PDO("mysql:host=localhost;dbname=ecom", "root", "");
 ?>

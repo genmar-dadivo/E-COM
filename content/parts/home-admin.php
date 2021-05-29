@@ -94,7 +94,76 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="editassethome" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <nav class="navbar navbar-light bg-light">
+            </nav>
+            <div class="modal-body custom-bg-2">
+                <form id="formEdithomeasset">
+                    <div class="container">
+                        <div class="row mt-3">
+                            <div class="col-sm-6">
+                                <div class="form-floating">
+                                    <select class="form-select border-0 shadow-sm" id="editassettype" name="editassettype" required>
+                                        <option disabled selected value="">Asset Type</option>
+                                        <option value="1">Carousel</option>
+                                        <option value="2">Card</option>
+                                    </select>
+                                    <label for="editassettype">Select</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control border-0 shadow-sm" onblur="this.style='text-transform: capitalize;'" id="editassettitle" name="editassettitle" placeholder="Title" autocomplete="off" required>
+                                    <label for="editassettitle">Asset Title</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control border-0 shadow-sm" placeholder="Asset Desciption" id="editassetdescription" name="editassetdescription" style="height: 100px" onblur="this.style='text-transform: capitalize;'" autocomplete="off" required></textarea>
+                                    <label for="editassetdescription">Asset Desciption</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="editshowhide" name="editshowhide">
+                                    <label class="form-check-label" for="editshowhide">Show upon adding</label>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <input type="file" class="form-control border-0 shadow-sm" id="editassetfile" name="editassetfile" placeholder="Asset File" accept="image/*" required>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-12">
+                                <button type="submit" id="btnEditsubmit" class="btn btn-primary"> Submit </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
+    function editassethome(assetid) {
+        $('#editassethome').modal('show');
+        $('#editassethome').appendTo('body');
+        $.ajax({
+            url: '../../content/action/getAdminhomedata.php?id=' + assetid,
+            success: function(data) {
+            }
+        });
+    }
     function deleteassethome(assetid) {
         if(confirm("Are you sure to delete this asset? \nAsset ID: " + assetid)) {
             $.ajax({

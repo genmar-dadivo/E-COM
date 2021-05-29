@@ -79,6 +79,13 @@
 								<li>
 									<a class="dropdown-item" href="#" onclick="loadcontent(7)">Admin</a>
 								</li>
+								<?php 
+									} 
+									elseif ($lvl == 1) {
+								?>
+								<li>
+									<a class="dropdown-item" href="#" onclick="loadcontent(7)"> Concerns </a>
+								</li>
 								<?php } ?>
 								<li>
 									<hr class="dropdown-divider">
@@ -113,7 +120,7 @@
 						<img src="assets/img/logo.png" class="rounded mx-auto d-block" style="height: 100px;">
 						<div class="form">
 							<form class="register-form intlogin" id="formRegister">
-								<input type="text" class="text-capitalize" name="fname" placeholder="Full Name" autocomplete="off" required>
+								<input type="text" class="text-capitalize letteronly" name="fname" placeholder="Full Name" autocomplete="off" required>
 								<input type="password" name="pword" placeholder="Password" maxlength="16" autocomplete="off" required>
 								<input type="email" name="email" class="emailadd" autocomplete="off" placeholder="Email Address" required>
 								<textarea name="address" class="text-capitalize" autocomplete="off" placeholder="Address" required></textarea>

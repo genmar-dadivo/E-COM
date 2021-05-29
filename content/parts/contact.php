@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require '../../content/dbase/dbconfig.php';
     date_default_timezone_set("Asia/Manila");
     $datetimenow = date('YmdHis');
     if (isset($_SESSION['ecom_auth']) ) { $email = strtolower($_SESSION['ecom_auth']); }
@@ -40,8 +41,19 @@
                     <button type="submit" class="btn custom-btn-1 btn-lg"> Submit </button>
                 </div>
             </form>
+            <?php
+            if (isset($_SESSION['ecom_auth']) ) {
+            $ecom_auth = $_SESSION['ecom_auth'];
+            $sql = "SELECT lvl FROM tuser WHERE email = '$ecom_auth'";
+            $stm = $con->prepare($sql);
+            $stm->execute();
+            $row = $stm->fetch();
+            $lvl = $row['lvl'];
+            if ($lvl == 2) {
+            ?>
             <div class="livechatform hidden">
                 <form id="formLivechat">
+                    <input type="hidden" name="user" value="<?php echo $ecom_auth; ?>">
                     <div class="mt-2">
                         <div class="col-sm-6">
                             <div class="form-floating">
@@ -67,11 +79,22 @@
                     </div>
                 </form>
             </div>
+            <?php
+            }
+            }
+            ?>
         </div>
     </div>
 </div>
 <?php
-if (isset($_SESSION['ecom_auth']) ) { 
+if (isset($_SESSION['ecom_auth']) ) {
+$ecom_auth = $_SESSION['ecom_auth'];
+$sql = "SELECT lvl FROM tuser WHERE email = '$ecom_auth'";
+$stm = $con->prepare($sql);
+$stm->execute();
+$row = $stm->fetch();
+$lvl = $row['lvl'];
+if ($lvl == 2) {
 ?>
 <div class="btn-group-fab" role="group">
     <div>
@@ -82,6 +105,7 @@ if (isset($_SESSION['ecom_auth']) ) {
     </div>
 </div>
 <?php
+}
 }
 ?>
 <script>
@@ -105,5 +129,19 @@ if (isset($_SESSION['ecom_auth']) ) {
             $('.formtitle').text('CONTACT US');
         }
         else { $('.formtitle').text('LIVE CHAT'); }
+    });
+    // LIVE CHAT
+    $('#formLivechat').on('submit', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: 'content/action/formlivechat.php?i',
+            data: $('#formLivechat').serialize(),
+            success: function(data) {
+                var win = window.open('content/parts/livechat.php?r=' + data, '_blank');
+                if (win) {  win.focus(); } 
+                else { alert('Please allow popups for this website'); }
+            }
+        });
     });
 </script>

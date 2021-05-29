@@ -21,6 +21,17 @@ $(document).ready(function () {
     //alert(loadadminpageid);
   }
   else { loadcontent(loadpageid); }
+  if (window.location.href.indexOf("livechat.php?r=") > -1) { 
+    //window.onbeforeunload = function () { return false; }
+    var r = $('#r').val();
+    var user = $('#user').val();
+    $("#livechatcontent").load("../action/formlivechat.php?r=" + r + "&user=" + user, function() {
+      $("#livechatcontent").animate({ scrollTop: $('#livechatcontent').prop("scrollHeight")}, 1000);
+    });
+    setInterval(function() {
+      $("#livechatcontent").load("../action/formlivechat.php?r=" + r + "&user=" + user);
+    }, 1000);
+  }
 });
 function loadcontent(pageid) {
   if(pageid == 1) { $("#page-content").load("content/parts/home.php"); }
@@ -43,6 +54,9 @@ function eloadcontent(pageid) {
   $('#bodyid').val(pageid);
   Cookies.set('pageid', pageid);
 }
+$('.numberonly').keyup(function(event) { this.value = this.value.replace(/[^0-9.\.]/g,''); });
+$('.letteronly').keyup(function(event) { this.value = this.value.replace(/[^A-Za-zÑñ \.]/g,''); });
+$('.code').keyup(function(event) { this.value = this.value.replace(/[^A-Za-z0-9/\ \.]/g,''); });
 // CALENDAR
 if (window.location.href.indexOf("events") > -1) {
   document.addEventListener('DOMContentLoaded', function() {
@@ -84,34 +98,38 @@ $('#formLogin').on('submit', function(e) {
   $("#btnLogin").html('Loading ...');
   e.preventDefault();
   $.ajax({
-      type: 'POST',
-      url: 'content/action/formlogin.php',
-      data: $('#formLogin').serialize(),
-      success: function(data) {
-        $.notify({
-          message: data,
+    type: 'POST',
+    url: 'content/action/formlogin.php',
+    data: $('#formLogin').serialize(),
+    success: function(data) {
+      $.notify({
+        message: data,
+      },
+      {
+        type: "minimalist",
+        allow_dismiss: false,
+        z_index: 9999,
+        placement: {
+          from: "bottom",
+          align: "center"
         },
-        {
-          type: "minimalist",
-          allow_dismiss: false,
-          z_index: 9999,
-          placement: {
-            from: "bottom",
-            align: "center"
-          },
-          animate: {
-            enter: 'animated fadeInDown',
-            exit: 'animated fadeOutUp'
-          },
-          onClosed: setTimeout(function() {
-            location.reload();
-          }, 3000),
-          template: 
+        animate: {
+          enter: 'animated fadeInDown',
+          exit: 'animated fadeOutUp'
+        },
+        onClosed: setTimeout(function() {
+          if(data == 'Logging In.') { location.reload(); }
+          else {
+            $('#btnLogin').prop("disabled", false);
+            $("#btnLogin").html('Login');
+          }
+        }, 3000),
+        template: 
           '<div data-notify="container" class="col-xs-6 col-sm-3 alert alert-{0}" role="alert">' +
             '<span data-notify="message">{2}</span>' +
           '</div>'
-        });
-      }
+      });
+    }
   });
 });
 // REGISTER
@@ -212,3 +230,16 @@ function adminpage(pageid) {
   else if (pageid == 3) { $('#page-content').load('../../content/parts/announcement-admin.php'); }
   else if (pageid == 4) { $('#page-content').load('../../content/parts/surveys-admin.php'); }
 }
+// LIVE CHAT
+$('#formLivechat').on('submit', function(e) {
+  e.preventDefault();
+  $.ajax({
+      type: 'POST',
+      url: '../../content/action/formlivechat.php?lc',
+      data: $('#formLivechat').serialize(),
+      success: function(data) {
+        $('#response').val('');
+        $("#livechatcontent").animate({ scrollTop: $('#livechatcontent').prop("scrollHeight") }, 1000);
+      }
+  });
+});

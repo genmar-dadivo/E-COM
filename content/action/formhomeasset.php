@@ -1,5 +1,4 @@
 <?php
-    require '../dbase/dbconfig.php';
     date_default_timezone_set("Asia/Manila");
     require '../dbase/dbconfig.php';
     $datenow = date('Y-m-d');
